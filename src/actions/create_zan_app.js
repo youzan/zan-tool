@@ -91,7 +91,6 @@ module.exports = function(projectName, command) {
         1. cd ${projectName}
         2. npm install 安装项目依赖
         3. zan dev 开启后端服务
-        4. zan deploy 该命令会执行上线前的打包、编译、上传 CDN 等操作
         `;
             console.log(boxen(msg, {
                 padding: {
