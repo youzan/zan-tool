@@ -1,7 +1,7 @@
 const path = require('path');
 const nodemon = require('nodemon');
 const chalk = require('chalk');
-const Util = require('../lib/util');
+const Util = require('../../lib/util');
 
 module.exports = function(command) {
     const projectRoot = Util.getProjectRoot();

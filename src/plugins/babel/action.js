@@ -1,9 +1,9 @@
 const shelljs = require('shelljs');
 const path = require('path');
 const chalk = require('chalk');
-const Checker = require('../lib/checker');
-const Util = require('../lib/util');
-const PrintHelper = require('../lib/print_helper');
+const Checker = require('../../lib/checker');
+const Util = require('../../lib/util');
+const PrintHelper = require('../../lib/print_helper');
 
 module.exports = function(command) {
     Checker.checkZanConfig();
