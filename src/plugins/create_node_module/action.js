@@ -4,8 +4,9 @@ const chalk = require('chalk');
 const inquirer = require('inquirer');
 const download = require('download');
 const ejs = require('ejs');
-const Util = require('../lib/util');
-const TEMPLATES = require('../config/template');
+const ora = require('ora');
+const Util = require('../../lib/util');
+const NODE_MODULE_TEMPLATE = 'https://github.com/kk0829/node-module-template/archive/master.zip';
 
 module.exports = function (moduleName) {
     if (fs.existsSync(moduleName)) {
@@ -49,22 +50,32 @@ module.exports = function (moduleName) {
     }];
 
     inquirer.prompt(promps).then((answers) => {
-        let downloadPath = path.join(Util.getRootPath(), 'src/templates/download/');
+        let downloadPath = path.join(Util.getRootPath(), 'downloads/');
 
-        download(TEMPLATES.NODE_MODULE, downloadPath, {
+        // 显示 loading
+        const spinner = ora({
+            text: '正在下载项目模板...',
+            color: 'green'
+        }).start();
+
+        download(NODE_MODULE_TEMPLATE, downloadPath, {
             extract: true
         }).then((data) => {
+            // 关闭 loading
+            spinner.stop();
+            
             for (let i = 0; i < data.length; i++) {
                 let item = data[i];
                 let newPath = path.join(Util.getProjectRoot(), item.path.replace(item.path.split('/')[0], moduleName));
-                console.log(newPath);
 
                 if (item.type === 'file') {
                     let fileData = fs.readFileSync(path.join(downloadPath, item.path), 'utf8');
                     let content = ejs.compile(fileData)(answers);
                     fs.outputFileSync(newPath, content);
+                    console.log(chalk.green('新建文件：', newPath));
                 } else if (item.type === 'directory') {
                     fs.ensureDirSync(newPath);
+                    console.log(chalk.green('新建目录：', newPath));
                 }
             }
 

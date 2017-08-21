@@ -7,8 +7,8 @@ const download = require('download');
 const ejs = require('ejs');
 const boxen = require('boxen');
 const ora = require('ora');
-const Util = require('../lib/util');
-const TEMPLATES = require('../config/template');
+const Util = require('../../lib/util');
+const ZAN_NODE_TEMPLATE = 'https://github.com/youzan/zan-template/archive/master.zip';
 
 module.exports = function(projectName, command) {
     if (fs.existsSync(projectName)) {
@@ -48,14 +48,14 @@ module.exports = function(projectName, command) {
 
     inquirer.prompt(promps).then((answers) => {
         answers.keywords = answers.keywords ? answers.keywords.split(' ') : [];
-        let downloadPath = path.join(Util.getRootPath(), 'src/templates/download/');
+        let downloadPath = path.join(Util.getRootPath(), 'downloads/');
         // 显示 loading
         const spinner = ora({
             text: '正在下载项目模板...',
             color: 'green'
         }).start();
 
-        download(TEMPLATES.ZAN_NODE, downloadPath, {
+        download(ZAN_NODE_TEMPLATE, downloadPath, {
             extract: true
         }).then((data) => {
             // 关闭 loading
