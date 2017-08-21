@@ -20,6 +20,10 @@ module.exports = {
     },
 
     get(key) {
+        return conf.get(key);
+    },
+
+    getAction(key) {
         const config = conf.get(key);
         if (config) {
             let table = new Table({
@@ -55,7 +59,10 @@ module.exports = {
         } else {
             console.log(chalk.red(`配置信息 ${key} 不存在`));
         }
-        this.list();
+    },
+
+    has(key) {
+        return conf.has(key);
     }
 
 

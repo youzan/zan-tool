@@ -6,7 +6,7 @@ module.exports = function(...args) {
     // console.log(args);
     if (args.length === 2) {
         if (args[1].get) { // get 操作
-            conf.get(args[0]);
+            conf.getAction(args[0]);
         } else if (args[1].set) { // set 操作
             conf.set(args[0]);
         } else if (args[1].delete) {
