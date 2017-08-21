@@ -9,6 +9,7 @@ const createNodeModule = require('./plugins/create_node_module');
 const dev = require('./plugins/dev');
 const htmlmin = require('./plugins/htmlmin');
 const createZanApp = require('./plugins/create_zan_app');
+const config = require('./plugins/config');
 
 function registerPlugin(plugin) {
     let pro = program
@@ -31,6 +32,7 @@ registerPlugin(createNodeModule);
 registerPlugin(dev);
 registerPlugin(babel);
 registerPlugin(htmlmin);
+registerPlugin(config);
 registerPlugin(doc);
 
 program
