@@ -42,7 +42,7 @@ const EXTRA_PLUGINS_DIR = conf.get('EXTRA_PLUGINS') || path.join(__dirname, 'ext
 if (fs.existsSync(EXTRA_PLUGINS_DIR)) {
     let filenames = fs.readdirSync(EXTRA_PLUGINS_DIR);
     filenames = filenames.filter((item) => {
-        return item.indexOf('.') !== 0 && item !== 'package.json';
+        return item.indexOf('.') !== 0 && item !== 'package.json' && item !== 'node_modules';
     });
     for (let i = 0; i < filenames.length; i++) {
         let stat = fs.statSync(`${EXTRA_PLUGINS_DIR}/${filenames[i]}`);
