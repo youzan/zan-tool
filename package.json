@@ -1,6 +1,6 @@
 {
   "name": "zan-tool",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Zan Node 框架配套开发工具",
   "main": "./src/index.js",
   "bin": {
@@ -14,6 +14,7 @@
     "cli-table": "0.3.1",
     "commander": "2.9.0",
     "conf": "1.1.2",
+    "david": "11.0.0",
     "download": "6.2.5",
     "ejs": "2.5.7",
     "fs-extra": "4.0.1",
