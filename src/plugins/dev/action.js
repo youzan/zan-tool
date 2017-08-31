@@ -3,6 +3,8 @@ const nodemon = require('nodemon');
 const chalk = require('chalk');
 const Util = require('../../lib/util');
 
+const defaultDoraemon = 'http://127.0.0.1:8001';
+
 module.exports = function(command) {
     const projectRoot = Util.getProjectRoot();
     const config = {
@@ -27,6 +29,13 @@ module.exports = function(command) {
         config.env.DEBUG = '*';
     } else if (command.debug && command.debug !== true) {
         config.env.DEBUG = command.debug;
+    }
+
+    // 传递了--mock 参数
+    // zan dev --mock
+    // zan dev --mock https://127.0.0.1:8001
+    if (command.mock) {
+        config.env.HTTPS_PROXY = config.env.HTTP_PROXY = command.mock === true ? defaultDoraemon : command.mock;
     }
 
     nodemon(config).on('start', () => {
