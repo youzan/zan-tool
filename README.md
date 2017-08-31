@@ -30,17 +30,19 @@ zan
 ```
 
 ```
-  Usage: ztool [options] [command]
+  Usage: zan [options] [command]
 
 
   Commands:
 
-    init <projectName>   初始化一个新的 Zan Node Web 项目
-    dev [options]        本地开发，开启后端服务
+    init <projectName>   初始化一个新的 ZanNode Web 项目
     module <moduleName>  初始化一个 NPM 包项目
-    htmlmin              HTML 模板压缩
+    dev [options]        本地开发，开启后端服务
     babel [options]      Babel 编译文件
-    doc                  查看 Zan Node 框架文档
+    htmlmin              HTML 模板压缩
+    config [options]     配置信息查看、编辑
+    outdated             检测当前项目已经过时的 NPM 包
+    doc                  查看 ZanNode 框架文档
     *
 
   Options:
