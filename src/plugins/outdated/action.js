@@ -10,12 +10,20 @@ function listDependencies(deps) {
         head: ['Name', 'Required', 'Stable', 'Latest']
     });
     Object.keys(deps).forEach(function(depName) {
-        table.push([
-            depName,
-            deps[depName].required || '*',
-            deps[depName].stable || 'None',
-            deps[depName].latest
-        ]);
+        if (deps[depName].warn) {
+            table.push([
+                depName,
+                deps[depName].required || '*',
+                deps[depName].warn.message
+            ]);
+        } else {
+            table.push([
+                depName,
+                deps[depName].required || '*',
+                deps[depName].stable || 'None',
+                deps[depName].latest
+            ]);
+        }
     });
     console.log(table.toString());
 }
@@ -23,6 +31,10 @@ function listDependencies(deps) {
 module.exports = function(command) {
     const projectRoot = Util.getProjectRoot();
     const pkg = require(path.join(projectRoot, 'package.json'));
+    const npmOptions = {};
+    if (command.registry) {
+        npmOptions.registry = command.registry;
+    }
 
     console.log(chalk.green('required'), ' - The version required according to the manifest');
     console.log(chalk.green('stable'), ' - The latest stable version available');
@@ -34,7 +46,9 @@ module.exports = function(command) {
         color: 'green'
     }).start();
 
-    david.getUpdatedDependencies(pkg, {}, function(err, deps) {
+    david.getUpdatedDependencies(pkg, {
+        npm: npmOptions
+    }, function(err, deps) {
         if (err) {
             console.warn(err);
         } else {
@@ -48,7 +62,8 @@ module.exports = function(command) {
     });
 
     david.getUpdatedDependencies(pkg, {
-        dev: true
+        dev: true,
+        npm: npmOptions
     }, function(err, deps) {
         if (err) {
             console.warn(err);
