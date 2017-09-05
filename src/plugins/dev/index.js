@@ -15,7 +15,7 @@ module.exports = {
         console.log('    $ zan dev --debug');
         console.log('    $ zan dev --debug koa:application');
         console.log('    $ zan dev --mock');
-        console.log('    $ zan dev --mock https://127.0.0.1:8001');
+        console.log('    $ zan dev --mock http://127.0.0.1:8001');
         console.log('    $ zan dev --debug --mock');
         console.log();
     }
