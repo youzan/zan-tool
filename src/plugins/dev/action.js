@@ -11,7 +11,7 @@ module.exports = function(command) {
         verbose: false,
         // nodeArgs: ['--harmony'],
         env: {
-            NODE_ENV: 'development'
+            NODE_ENV: command.env ? command.env : 'development'
         },
         watch: [
             path.join(projectRoot, 'server/**/*.*')
