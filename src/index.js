@@ -13,7 +13,6 @@ const dev = require('./plugins/dev');
 const htmlmin = require('./plugins/htmlmin');
 const createZanApp = require('./plugins/create_zan_app');
 const config = require('./plugins/config');
-const outdated = require('./plugins/outdated');
 
 function registerPlugin(plugin) {
     let pro = program
@@ -37,7 +36,6 @@ registerPlugin(dev);
 registerPlugin(babel);
 registerPlugin(htmlmin);
 registerPlugin(config);
-registerPlugin(outdated);
 registerPlugin(doc);
 
 const EXTRA_PLUGINS_DIR = conf.get('EXTRA_PLUGINS') || path.join(__dirname, 'extra_plugins');
