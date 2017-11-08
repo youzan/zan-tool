@@ -15,6 +15,7 @@ module.exports = {
         console.log('');
         console.log('    $ zan config -l');
         console.log('    $ zan config --list');
+        console.log('    $ zan config -s EXTRA_PLUGINS=/path/to/extra_plugins_dir');
         console.log();
     }
 };
