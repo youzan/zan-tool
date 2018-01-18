@@ -52,7 +52,7 @@ module.exports = {
                 minifyCSS: true,
                 minifyJS: true,
                 removeComments: true,
-                ignoreCustomFragments: [/{%[\s\S]*?%}/, /<\?[\s\S]*?\?>/]
+                ignoreCustomFragments: [/{#[\s\S]*?#}/, /{{[\s\S]*?}}/, /{%[\s\S]*?%}/, /<\?[\s\S]*?\?>/]
             }
         });
         config.dest = path.join(projectRoot, config.dest);
