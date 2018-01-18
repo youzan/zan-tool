@@ -1,6 +1,6 @@
 {
   "name": "zan-tool",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Zan Node 框架配套开发工具",
   "main": "./src/index.js",
   "bin": {
